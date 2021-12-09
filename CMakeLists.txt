@@ -27,8 +27,16 @@ set_target_properties(coro_future PROPERTIES EXCLUDE_FROM_ALL TRUE)
 add_executable(coro_generator coro_generator.cpp)
 target_compile_options(coro_generator PUBLIC "-std=c++20")
 
-# add_executable(coro_server coro_server.cpp)
+add_executable(async_server async_server.cpp)
+set_target_properties(async_server PROPERTIES EXCLUDE_FROM_ALL TRUE)
 
-# target_include_directories(coro_server PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/coro-async/coro-async/include")
-# target_compile_options(coro_server PUBLIC "-std=c++20")
-# target_link_libraries(coro_server Threads::Threads)
+target_include_directories(async_server PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/coro-async/coro-async/include")
+target_compile_options(async_server PUBLIC "-std=c++20")
+target_link_libraries(async_server Threads::Threads)
+
+add_executable(coro_server coro_server.cpp)
+set_target_properties(coro_server PROPERTIES EXCLUDE_FROM_ALL TRUE)
+
+target_include_directories(coro_server PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/coro-async/coro-async/include")
+target_compile_options(coro_server PUBLIC "-std=c++20")
+target_link_libraries(coro_server Threads::Threads)

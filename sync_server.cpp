@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
 
     err = bind(server_fd, (struct sockaddr *)&server, sizeof(server));
     if (err < 0) {
-        perror("listen");
+        perror("bind");
         exit(EXIT_FAILURE);
     }
 
@@ -91,7 +91,7 @@ int main(int argc, char *argv[]) {
         printf("Client disconnected\n");
         close(client_fd);
     }
-    printf("Stopping server");
+    printf("Stopping server\n");
     close(server_fd);
 
     return 0;
